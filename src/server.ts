@@ -1,11 +1,12 @@
 import { app } from "./app";
 import { config } from "./config";
+import dbinit from "./db";
 
 const main = () => {
-  const port = config.port;
+  dbinit()
 
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+  app.listen(config.port, () => {
+    console.log(`Express Book server is listening on port ${config.port}`);
   });
 };
 
