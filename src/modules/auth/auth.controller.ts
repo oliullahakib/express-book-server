@@ -14,7 +14,18 @@ const registerUser: RequestHandler = async (req, res) => {
   }
 };
 const loginUser: RequestHandler = async (req, res) => {
-  res.status(200).json({ status: true, message: "Login successfully" });
+  try {
+    const result = await authService.loginUserIntoDB(req.body);
+    res.status(200).json({
+      status: true,
+      message: "Login user successfully",
+      data: result,
+    });
+
+    
+  } catch (error: any) {
+    res.status(500).json({ status: false, message: error.message });
+  }
 };
 
 export const authController = {
